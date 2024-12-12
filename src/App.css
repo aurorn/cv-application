@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.form-section {
+  background: #f0f0f0;
+  padding: 20px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.display-section {
+  background: #ffffff;
+  padding: 20px;
+  width: 500px;
+  display: flex;
+}
+
+
+p {
+  color: black;
+}

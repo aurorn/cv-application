@@ -1,0 +1,18 @@
+.general-info {
+  margin: 20px 0;
+}
+
+.general-info label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.general-info input {
+  margin-left: 10px;
+}
+
+/* GeneralInfo.css */
+.general-info h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}

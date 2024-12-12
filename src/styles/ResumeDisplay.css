@@ -1,0 +1,58 @@
+/* ResumeDisplay.css */
+.resume-display {
+    width: 100%;
+}
+
+
+.resume-display h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    Color: black;
+  }
+  
+  .resume-display section {
+    margin-bottom: 20px;
+  }
+  
+  .resume-display section h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #4caf50;
+  }
+  
+  .resume-display p {
+    margin: 5px 0;
+
+  }
+  
+  .resume-display strong {
+    font-weight: bold;
+  }
+  
+.info-section {
+    displaY: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.info-text {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.info-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.name-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.job-title-text {
+    font-style:italic;
+}
