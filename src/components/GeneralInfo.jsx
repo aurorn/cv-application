@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../styles/GeneralInfo.css';
 
 function GeneralInfo({ data, setData }) {

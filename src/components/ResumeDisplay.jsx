@@ -1,18 +1,18 @@
-import React from "react";
+
 import "../styles/ResumeDisplay.css";
 
 function ResumeDisplay({ generalInfo, educationInfo, practicalInfo }) {
   return (
     <div className="resume-display">
-      <section class="info-section">
-        <section class="name-title">
+      <section className="info-section">
+        <section className="name-title">
           <h2>{generalInfo.name}</h2>
-          <p class="job-title-text">Job Title:</p>
+          <p className="job-title-text">Job Title:</p>
         </section>
-        <section class="info-text-container">
+        <section className="info-text-container">
           <h3></h3>
-          <p class="info-text">{generalInfo.email}</p>
-          <p class="info-text">{generalInfo.phone}</p>
+          <p className="info-text">{generalInfo.email}</p>
+          <p className="info-text">{generalInfo.phone}</p>
         </section>
       </section>
     
