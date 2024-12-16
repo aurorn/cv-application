@@ -1,14 +1,18 @@
-/* ResumeDisplay.css */
+.display-section {
+  background: #ffffff;
+  display: flex;
+  height: 29.7cm;
+  width: 21cm;
+}
+
 .resume-display {
     width: 100%;
 }
-
 
 .resume-display h2 {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.8rem;
-    Color: black;
   }
   
   .resume-display section {
@@ -18,7 +22,7 @@
   .resume-display section h3 {
     margin-bottom: 10px;
     font-size: 1.2rem;
-    color: #4caf50;
+    color: #000000;
   }
   
   .resume-display p {
@@ -34,7 +38,43 @@
     displaY: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    background-color: #002f5a;
+    padding: 20px;    
+}
+
+.work-section, .edu-section {
+  padding: 20px;
+}
+
+.edu-section {
+
+}
+
+.work-title, .edu-title {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(80, 80, 88, 0.26);
+}
+
+.work-info, .edu-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.name-title-text, .info-text, .job-title-text {
+  color:white;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.time-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 200px;
 }
 
 .info-text {
@@ -50,7 +90,8 @@
 
 .name-title {
     display: flex;
-    flex-direction: column;
+    
+    
 }
 
 .job-title-text {
