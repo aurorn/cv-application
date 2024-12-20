@@ -1,7 +1,12 @@
+#root {
+  width: 100svw;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100svw;
 }
 
 .app-container {
@@ -11,9 +16,16 @@ body {
   font-family: sans-serif;
 }
 
+.input-sections {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
 form {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
 }
 
 form input {
@@ -28,8 +40,8 @@ form input {
   padding: 0 20px 20px 20px;
   color: black;
   display: flex;
-  flex-direction: column;
-  width: 500px;
+  flex-flow: column wrap;
+  width: 400px;
   margin: 20px;
   border-radius: 20px;
 }
@@ -59,3 +71,4 @@ button:hover {
 p {
   color: black;
 }
+

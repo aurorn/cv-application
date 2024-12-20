@@ -8,6 +8,11 @@ form {
   flex-direction: column;
 }
 
+.submitted-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .general-info form label {
   display: flex;
   align-items: center;

@@ -63,7 +63,7 @@ function GeneralInfo({ data, setData }) {
         <button type="submit">Submit</button>
       </form>
       ) : (
-        <div>
+        <div className="submitted-info">
           <p>{data.name}</p>
           <p>{data.email}</p>
           <p>{data.phone}</p>

@@ -52,7 +52,7 @@ function Education({ data, setData }) {
         {education.map((edu, index) => (
           <div key={index} className="education-item">
             <div className="education-summary">
-              <span>{edu.titleOfStudy} at {edu.schoolName}</span>
+              <span>{edu.titleOfStudy} {edu.schoolName}</span>
               <div className="education-actions">
                 <button onClick={() => handleEdit(index)}>Edit</button>
                 <button onClick={() => handleDelete(index)}>Delete</button>
