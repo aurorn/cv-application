@@ -15,10 +15,6 @@
     font-size: 1.8rem;
   }
   
-  .resume-display section {
-    margin-bottom: 20px;
-  }
-  
   .resume-display section h3 {
     margin-bottom: 10px;
     font-size: 1.2rem;
@@ -42,15 +38,23 @@
     padding: 20px;    
 }
 
-.work-section, .edu-section {
-  padding: 20px;
+.side-container {
+  display: flex;
+  flex-direction: row;
 }
 
-.edu-section {
-
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
 }
 
-.work-title, .edu-title {
+.work-section, .edu-section, .custom-sections {
+  margin-left: 20px;
+}
+
+.work-title, .edu-title, .custom-title, .cert-title, .skill-title {
   display: flex;
   justify-content: center;
   background-color: rgba(80, 80, 88, 0.26);
@@ -60,6 +64,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  width: 300px;
 }
 
 .name-title-text, .info-text, .job-title-text {
@@ -74,7 +79,8 @@
 .time-container {
   display: flex;
   flex-direction: column;
-  margin-right: 200px;
+  width: 150px;
+
 }
 
 .info-text {
@@ -90,10 +96,22 @@
 
 .name-title {
     display: flex;
-    
+    flex-direction: column;
     
 }
 
 .job-title-text {
     font-style:italic;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 20px 0 20px;
+}
+
+.cert-title {
+  display: flex;
+  justify-content: center;
 }

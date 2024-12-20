@@ -2,64 +2,109 @@ import { useState } from "react";
 import "../styles/Education.css";
 
 function Education({ data, setData }) {
-  const [editing, setEditing] = useState(true);
+  const [education, setEducation] = useState(data || []);
+  const [editing, setEditing] = useState(null);
+  const [showForm, setShowForm] = useState(true);
 
-  const [localSchoolName, setLocalSchoolName] = useState(data.schoolName);
-  const [localTitleOfStudy, setLocalTitleOfStudy] = useState(data.titleOfStudy);
-  const [localDateOfStudy, setLocalDateOfStudy] = useState(data.dateOfStudy);
+  const emptyEducation = {
+    schoolName: '',
+    titleOfStudy: '',
+    dateFrom: '',
+    dateUntil: ''
+  };
+
+  const [currentEdu, setCurrentEdu] = useState(emptyEducation);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setData({
-      schoolName: localSchoolName,
-      titleOfStudy: localTitleOfStudy,
-      dateOfStudy: localDateOfStudy
-    });
-    setEditing(false);
+    if (editing !== null) {
+      const updatedEducation = [...education];
+      updatedEducation[editing] = currentEdu;
+      setEducation(updatedEducation);
+      setData(updatedEducation);
+    } else {
+      const newEducation = [...education, currentEdu];
+      setEducation(newEducation);
+      setData(newEducation);
+    }
+    setCurrentEdu(emptyEducation);
+    setEditing(null);
+    setShowForm(false);
   };
 
-  const handleEdit = () => {
-    setEditing(true);
+  const handleEdit = (index) => {
+    setCurrentEdu(education[index]);
+    setEditing(index);
+    setShowForm(true);
+  };
+
+  const handleDelete = (index) => {
+    const updatedEducation = education.filter((_, i) => i !== index);
+    setEducation(updatedEducation);
+    setData(updatedEducation);
   };
 
   return (
-    <div className="education-info">
+    <div className="education-section">
       <h2>Education</h2>
-      {editing ? (
+      
+      <div className="education-list">
+        {education.map((edu, index) => (
+          <div key={index} className="education-item">
+            <div className="education-summary">
+              <span>{edu.titleOfStudy} at {edu.schoolName}</span>
+              <div className="education-actions">
+                <button onClick={() => handleEdit(index)}>Edit</button>
+                <button onClick={() => handleDelete(index)}>Delete</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!showForm && (
+        <button onClick={() => setShowForm(true)}>Add Education</button>
+      )}
+
+      {showForm && (
         <form onSubmit={handleSubmit}>
           <label>
-            School Name:
+            <span>School Name:</span>
             <input
               type="text"
-              value={localSchoolName}
-              onChange={(e) => setLocalSchoolName(e.target.value)}
+              value={currentEdu.schoolName}
+              onChange={(e) => setCurrentEdu({...currentEdu, schoolName: e.target.value})}
             />
           </label>
           <label>
-            Title of Study:
+            <span>Title of Study:</span>
             <input
               type="text"
-              value={localTitleOfStudy}
-              onChange={(e) => setLocalTitleOfStudy(e.target.value)}
+              value={currentEdu.titleOfStudy}
+              onChange={(e) => setCurrentEdu({...currentEdu, titleOfStudy: e.target.value})}
             />
           </label>
           <label>
-            Date of Study:
+            <span>From:</span>
             <input
               type="text"
-              value={localDateOfStudy}
-              onChange={(e) => setLocalDateOfStudy(e.target.value)}
+              value={currentEdu.dateFrom}
+              onChange={(e) => setCurrentEdu({...currentEdu, dateFrom: e.target.value})}
             />
           </label>
-          <button type="submit">Submit</button>
+          <label>
+            <span>Until:</span>
+            <input
+              type="text"
+              value={currentEdu.dateUntil}
+              onChange={(e) => setCurrentEdu({...currentEdu, dateUntil: e.target.value})}
+            />
+          </label>
+          <div className="form-actions">
+            <button type="submit">{editing !== null ? 'Update' : 'Add'}</button>
+            <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
+          </div>
         </form>
-      ) : (
-        <div>
-          <p><strong>School Name:</strong> {data.schoolName}</p>
-          <p><strong>Title of Study:</strong> {data.titleOfStudy}</p>
-          <p><strong>Date of Study:</strong> {data.dateOfStudy}</p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
       )}
     </div>
   );

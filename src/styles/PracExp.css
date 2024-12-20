@@ -1,6 +1,68 @@
-/* PracticalExperience.css */
+.practical-experience {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .practical-experience h2 {
-    margin-bottom: 20px;
-    font-size: 1.4rem;
-  }
-  
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Fix a width for the span so all inputs align */
+form label span {
+  display: flex;
+  width: 150px; 
+  margin-right: 10px;
+}
+
+form textarea {
+  flex: 1;
+  width: 298px;
+  height: 54px;
+}
+
+.experience-list {
+  margin-bottom: 1rem;
+}
+
+.experience-item {
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.experience-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.experience-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+
+
+.experience-limit-message {
+  color: #666;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}

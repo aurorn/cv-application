@@ -6,21 +6,55 @@ body {
 
 .app-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   font-family: sans-serif;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .form-section {
   background: #f0f0f0;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   color: black;
   display: flex;
   flex-direction: column;
   width: 500px;
+  margin: 20px;
+  border-radius: 20px;
 }
 
+h2 {
+  display: flex;
+  justify-content: center;
+}
 
+button {
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  align-self: center;
+}
+
+button:hover {
+  background-color: #474747;
+}
 
 p {
   color: black;

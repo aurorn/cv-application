@@ -1,88 +1,129 @@
 import { useState } from "react";
 import "../styles/PracExp.css";
 
-function PracticalExperience({ data, setData }) {
-  const [editing, setEditing] = useState(true);
+function PracExp({ data, setData }) {
+  const [experiences, setExperiences] = useState(data || []);
+  const [editing, setEditing] = useState(null); 
+  const [showForm, setShowForm] = useState(true);
 
-  const [localCompanyName, setLocalCompanyName] = useState(data.companyName);
-  const [localPositionTitle, setLocalPositionTitle] = useState(data.positionTitle);
-  const [localMainTasks, setLocalMainTasks] = useState(data.mainTasks);
-  const [localDateFrom, setLocalDateFrom] = useState(data.dateFrom);
-  const [localDateUntil, setLocalDateUntil] = useState(data.dateUntil);
+  const emptyExperience = {
+    companyName: '',
+    positionTitle: '',
+    mainTasks: '',
+    dateFrom: '',
+    dateUntil: ''
+  };
+
+  const [currentExp, setCurrentExp] = useState(emptyExperience);
+
+  const MAX_EXPERIENCES = 3;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setData({
-      companyName: localCompanyName,
-      positionTitle: localPositionTitle,
-      mainTasks: localMainTasks,
-      dateFrom: localDateFrom,
-      dateUntil: localDateUntil
-    });
-    setEditing(false);
+    if (editing !== null) {
+      const updatedExperiences = [...experiences];
+      updatedExperiences[editing] = currentExp;
+      setExperiences(updatedExperiences);
+      setData(updatedExperiences);
+    } else if (experiences.length < MAX_EXPERIENCES) {
+      const newExperiences = [...experiences, currentExp];
+      setExperiences(newExperiences);
+      setData(newExperiences);
+    }
+    setCurrentExp(emptyExperience);
+    setEditing(null);
+    setShowForm(false);
   };
 
-  const handleEdit = () => {
-    setEditing(true);
+  const handleEdit = (index) => {
+    setCurrentExp(experiences[index]);
+    setEditing(index);
+    setShowForm(true);
+  };
+
+  const handleDelete = (index) => {
+    const updatedExperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(updatedExperiences);
+    setData(updatedExperiences);
   };
 
   return (
     <div className="practical-experience">
-      <h2>Practical Experience</h2>
-      {editing ? (
+      <h2>Work Experience</h2>
+      
+      <div className="experience-list">
+        {experiences.map((exp, index) => (
+          <div key={index} className="experience-item">
+            <div className="experience-summary">
+              <span>{exp.positionTitle} at {exp.companyName}</span>
+              <div className="experience-actions">
+                <button onClick={() => handleEdit(index)}>Edit</button>
+                <button onClick={() => handleDelete(index)}>Delete</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!showForm && experiences.length < MAX_EXPERIENCES && (
+        <button onClick={() => setShowForm(true)}>Add Experience</button>
+      )}
+
+      {!showForm && experiences.length >= MAX_EXPERIENCES && (
+        <p className="experience-limit-message">
+          Maximum number of experiences (3) reached
+        </p>
+      )}
+
+      {showForm && (
         <form onSubmit={handleSubmit}>
           <label>
-            Company Name:
+            <span>Company Name:</span>
             <input
               type="text"
-              value={localCompanyName}
-              onChange={(e) => setLocalCompanyName(e.target.value)}
+              value={currentExp.companyName}
+              onChange={(e) => setCurrentExp({...currentExp, companyName: e.target.value})}
             />
           </label>
           <label>
-            Position Title:
+            <span>Position Title:</span>
             <input
               type="text"
-              value={localPositionTitle}
-              onChange={(e) => setLocalPositionTitle(e.target.value)}
+              value={currentExp.positionTitle}
+              onChange={(e) => setCurrentExp({...currentExp, positionTitle: e.target.value})}
             />
           </label>
           <label>
-            Main Responsibilities:
+            <span>Main Responsibilities:</span>
             <textarea
-              value={localMainTasks}
-              onChange={(e) => setLocalMainTasks(e.target.value)}
+              value={currentExp.mainTasks}
+              onChange={(e) => setCurrentExp({...currentExp, mainTasks: e.target.value})}
             />
           </label>
           <label>
-            Date From:
+            <span>Date From:</span>
             <input
-              type="text"
-              value={localDateFrom}
-              onChange={(e) => setLocalDateFrom(e.target.value)}
+              type="date"
+              value={currentExp.dateFrom}
+              onChange={(e) => setCurrentExp({...currentExp, dateFrom: e.target.value})}
             />
           </label>
           <label>
-            Date Until:
+            <span>Date Until:</span>
             <input
-              type="text"
-              value={localDateUntil}
-              onChange={(e) => setLocalDateUntil(e.target.value)}
+              type="date"
+              value={currentExp.dateUntil}
+              onChange={(e) => setCurrentExp({...currentExp, dateUntil: e.target.value})}
             />
           </label>
-          <button type="submit">Submit</button>
+          <div className="form-actions">
+            <button type="submit">{editing !== null ? 'Update' : 'Add'}</button>
+            <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
+          </div>
         </form>
-      ) : (
-        <div>
-          <p><strong>Company Name:</strong> {data.companyName}</p>
-          <p><strong>Position Title:</strong> {data.positionTitle}</p>
-          <p><strong>Main Responsibilities:</strong> {data.mainTasks}</p>
-          <p><strong>From:</strong> {data.dateFrom} <strong>Until:</strong> {data.dateUntil}</p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
       )}
     </div>
   );
 }
 
-export default PracticalExperience;
+export default PracExp;
