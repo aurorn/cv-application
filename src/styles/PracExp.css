@@ -23,8 +23,6 @@ form label span {
 
 form textarea {
   flex: 1;
-  width: 298px;
-  height: 54px;
 }
 
 .experience-list {

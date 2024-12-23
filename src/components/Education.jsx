@@ -1,10 +1,13 @@
 import { useState } from "react";
 import "../styles/Education.css";
+import PopupForm from "./Popup";
+import Cog from "../assets/cog.svg";
+import Bin from "../assets/bin.svg";
 
 function Education({ data, setData }) {
   const [education, setEducation] = useState(data || []);
   const [editing, setEditing] = useState(null);
-  const [showForm, setShowForm] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   const emptyEducation = {
     schoolName: '',
@@ -17,25 +20,25 @@ function Education({ data, setData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editing !== null) {
-      const updatedEducation = [...education];
-      updatedEducation[editing] = currentEdu;
-      setEducation(updatedEducation);
-      setData(updatedEducation);
-    } else {
-      const newEducation = [...education, currentEdu];
-      setEducation(newEducation);
-      setData(newEducation);
-    }
-    setCurrentEdu(emptyEducation);
+    const updatedEducation = editing !== null
+    ? education.map((edu, i) => (i === editing ? currentEdu : edu))
+    : [...education, currentEdu];
+    
+    setEducation(updatedEducation);
+    setData(updatedEducation);
+    closePopup();
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setCurrentEdu({ ...emptyEducation });
     setEditing(null);
-    setShowForm(false);
   };
 
   const handleEdit = (index) => {
+    setShowPopup(false);
     setCurrentEdu(education[index]);
     setEditing(index);
-    setShowForm(true);
   };
 
   const handleDelete = (index) => {
@@ -54,20 +57,23 @@ function Education({ data, setData }) {
             <div className="education-summary">
               <span>{edu.titleOfStudy} {edu.schoolName}</span>
               <div className="education-actions">
-                <button onClick={() => handleEdit(index)}>Edit</button>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+                <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {!showForm && (
-        <button onClick={() => setShowForm(true)}>Add Education</button>
-      )}
 
-      {showForm && (
-        <form onSubmit={handleSubmit}>
+        <button onClick={() => setShowPopup(true)}>Add Education</button>
+
+        <PopupForm 
+        show={showPopup}
+        close={closePopup}
+        onSubmit={handleSubmit}
+        title={editing !== null ? "Edit Education" : "Add Education"}
+      >
           <label>
             <span>School Name:</span>
             <input
@@ -100,12 +106,7 @@ function Education({ data, setData }) {
               onChange={(e) => setCurrentEdu({...currentEdu, dateUntil: e.target.value})}
             />
           </label>
-          <div className="form-actions">
-            <button type="submit">{editing !== null ? 'Update' : 'Add'}</button>
-            <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
-          </div>
-        </form>
-      )}
+        </PopupForm>
     </div>
   );
 }

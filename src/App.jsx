@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import './styles/Icons.css';
 import GeneralInfo from './components/GeneralInfo';
 import Education from './components/Education';
 import PracExp from './components/PracExp';
@@ -27,7 +28,7 @@ function App() {
     companyName: "Tech Solutions Inc.",
     positionTitle: "Full Stack Developer",
     mainTasks: "Developed and maintained web applications using React and Node.js. Led a team of 3 developers for client projects.",
-    dateFrom: "2024-12-18 - ",
+    dateFrom: "2024-12-18",
     dateUntil: "Present"
   }, {
     companyName: "Digital Innovations Co.",
