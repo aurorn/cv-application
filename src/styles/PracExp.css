@@ -40,7 +40,11 @@ form textarea {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  border: black 2px solid;
+  border-radius: 2px;
+  padding: 20px;
+  background-color: white;
 }
 
 .experience-actions {

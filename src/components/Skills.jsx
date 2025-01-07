@@ -52,10 +52,10 @@ function Skills({ data, setData }) {
       <div className="skills-list">
         {skills.map((skill, index) => (
           <div key={index} className="skill-item">
-            <span>{skill.title} - {skill.info}</span>
+            <span>{skill.title}</span>
             <div className="skill-actions">
-              <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
-                              <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+              <button className="item-button" onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+              <button className="item-button" onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
             </div>
           </div>
         ))}

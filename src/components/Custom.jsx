@@ -57,8 +57,8 @@ function Custom({ data, setData }) {
             <div className="custom-summary">
               <span>{custom.name}</span>
               <div className="custom-actions">
-                <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
-                                <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+                <button className="item-button" onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+                <button className="item-button" onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
               </div>
             </div>
           </div>

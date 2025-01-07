@@ -62,11 +62,11 @@ function PracExp({ data, setData }) {
           <div key={index} className="experience-item">
             <div className="experience-summary">
               <span>
-                {exp.positionTitle} at {exp.companyName}
+                {exp.positionTitle}
               </span>
               <div className="experience-actions">
-                <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
-                                <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+                <button className="item-button" onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+                <button className="item-button" onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
               </div>
             </div>
           </div>

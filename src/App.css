@@ -64,6 +64,16 @@ button {
   align-self: center;
 }
 
+.item-button {
+  background: none;
+  padding: 0;
+  margin: 5px;
+}
+
+.item-button:hover {
+  background: none;
+}
+
 button:hover {
   background-color: #474747;
 }

@@ -46,10 +46,12 @@ function Certifications({ data, setData }) {
       <div className="certifications-list">
         {certifications.map((cert, index) => (
           <div key={index} className="certification-item">
-            <span>{cert.certName} - {cert.certInfo}</span>
-            <div className="certification-actions">
-              <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
-                              <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+            <div className="certification-summary">
+              <span>{cert.certName}</span>
+              <div className="certification-actions">
+                <button className="item-button" onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+                <button className="item-button" onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+              </div>
             </div>
           </div>
         ))}

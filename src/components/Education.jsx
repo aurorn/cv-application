@@ -55,10 +55,10 @@ function Education({ data, setData }) {
         {education.map((edu, index) => (
           <div key={index} className="education-item">
             <div className="education-summary">
-              <span>{edu.titleOfStudy} {edu.schoolName}</span>
+              <span>{edu.titleOfStudy}</span>
               <div className="education-actions">
-                <button onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
-                <button onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
+                <button className="item-button" onClick={() => handleEdit(index)}><img className="edit-icon" src={Cog} alt="Edit" /></button>
+                <button className="item-button" onClick={() => handleDelete(index)}><img className="del-icon" src={Bin} alt="Delete" /></button>
               </div>
             </div>
           </div>

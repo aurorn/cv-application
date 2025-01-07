@@ -5,12 +5,26 @@
 }
   
 .certifications-list {
+    
     margin-bottom: 20px;
 }
+
+.certification-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-direction: column;
+    gap: 10px;
+    border: black 2px solid;
+    border-radius: 2px;
+    padding: 20px;
+    background-color: white;
+  }
   
 .certification-item {
     display: flex;
-    margin-bottom: 8px;
+    flex-direction: column;
     border-radius: 4px;
 }
   
