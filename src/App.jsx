@@ -8,6 +8,7 @@ import ResumeDisplay from './components/ResumeDisplay';
 import Custom from './components/Custom';
 import Skills from './components/Skills';
 import Certification from './components/Certifications';
+import Download from './components/Download';
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState({
@@ -76,6 +77,16 @@ function App() {
         </div>
         <div className="form-section">
           <Certification data={certInfo} setData={setCertInfo} />
+        </div>
+        <div className="form-section">
+          <Download 
+            generalInfo={generalInfo}
+            educationInfo={educationInfo}
+            practicalInfo={practicalInfo}
+            customInfo={customInfo}
+            skillsInfo={skillsInfo}
+            certInfo={certInfo}
+          />
         </div>
       </div>
       <div className="display-section">
