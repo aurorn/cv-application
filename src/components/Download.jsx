@@ -5,37 +5,51 @@ export default function Download({ generalInfo, educationInfo, practicalInfo, cu
     const doc = new JsPDF();
     let yPos = 20;
     const leftMargin = 20;
+    const rightMargin = 190;
     const lineHeight = 10;
 
-    // Header/General Info
+    // Header section with blue background
+    doc.setFillColor(0, 47, 90); // #002f5a
+    doc.rect(0, 0, 210, 40, 'F');
+    
+    // Header/General Info (in white text)
+    doc.setTextColor(255, 255, 255);
     doc.setFontSize(20);
     doc.text(generalInfo.name, leftMargin, yPos);
     
     doc.setFontSize(12);
-    yPos += lineHeight;
-    doc.text(`${generalInfo.job}`, leftMargin, yPos);
-    yPos += lineHeight;
-    doc.text(`Email: ${generalInfo.email}`, leftMargin, yPos);
-    yPos += lineHeight;
-    doc.text(`Phone: ${generalInfo.phone}`, leftMargin, yPos);
-    yPos += lineHeight * 2;
+    doc.text(`${generalInfo.job}`, leftMargin, yPos + lineHeight);
+    // Use setTextAlign instead of setTextAlignment
+    doc.text(`${generalInfo.email}`, rightMargin, yPos, { align: 'right' });
+    doc.text(`${generalInfo.phone}`, rightMargin, yPos + lineHeight, { align: 'right' });
+    yPos += lineHeight * 4;
 
-    // Custom Info Section (usually Professional Summary)
-    doc.setFontSize(16);
-    doc.text("Professional Summary", leftMargin, yPos);
-    yPos += lineHeight;
-    doc.setFontSize(12);
-    customInfo.forEach(custom => {
-      const lines = doc.splitTextToSize(custom.info, 170);
-      doc.text(lines, leftMargin, yPos);
-      yPos += lineHeight * lines.length;
-    });
-    yPos += lineHeight;
+    // Reset text color to black
+    doc.setTextColor(0, 0, 0);
+
+    // Professional Summary (Custom Info)
+    if (customInfo && customInfo.length > 0) {
+      doc.setFontSize(16);
+      doc.setFillColor(80, 80, 88, 0.26);
+      doc.rect(leftMargin - 5, yPos - 5, 120, 10, 'F');
+      doc.text("Professional Summary", leftMargin, yPos);
+      yPos += lineHeight * 2;
+
+      doc.setFontSize(12);
+      customInfo.forEach(custom => {
+        const summary = doc.splitTextToSize(custom.info, 170);
+        doc.text(summary, leftMargin, yPos);
+        yPos += lineHeight * summary.length + lineHeight;
+      });
+    }
 
     // Work Experience Section
     doc.setFontSize(16);
+    doc.setFillColor(80, 80, 88, 0.26);
+    doc.rect(leftMargin - 5, yPos - 5, 120, 10, 'F');
     doc.text("Work Experience", leftMargin, yPos);
-    yPos += lineHeight;
+    yPos += lineHeight * 2;
+
     doc.setFontSize(12);
     practicalInfo.forEach(exp => {
       doc.setFont(undefined, 'bold');
@@ -51,47 +65,61 @@ export default function Download({ generalInfo, educationInfo, practicalInfo, cu
 
     // Education Section
     doc.setFontSize(16);
+    doc.setFillColor(80, 80, 88, 0.26);
+    doc.rect(leftMargin - 5, yPos - 5, 120, 10, 'F');
     doc.text("Education", leftMargin, yPos);
-    yPos += lineHeight;
+    yPos += lineHeight * 2;
+
     doc.setFontSize(12);
     educationInfo.forEach(edu => {
       doc.setFont(undefined, 'bold');
       doc.text(edu.schoolName, leftMargin, yPos);
       doc.setFont(undefined, 'normal');
       yPos += lineHeight;
-      doc.text(`${edu.titleOfStudy}`, leftMargin, yPos);
+      doc.text(edu.titleOfStudy, leftMargin, yPos);
       yPos += lineHeight;
-      doc.text(`${edu.location} - ${edu.dateOfStudy}`, leftMargin, yPos);
-      yPos += lineHeight + 5;
+      doc.text(`${edu.dateFrom} - ${edu.dateUntil}`, leftMargin, yPos);
+      yPos += lineHeight * 2;
     });
+
+    // Right column sections
+    let rightColumnY = 70;
+    const middlePoint = 140;
 
     // Skills Section
     doc.setFontSize(16);
-    doc.text("Skills", leftMargin, yPos);
-    yPos += lineHeight;
+    doc.setFillColor(80, 80, 88, 0.26);
+    doc.rect(middlePoint - 5, rightColumnY - 5, 60, 10, 'F');
+    doc.text("Skills", middlePoint, rightColumnY);
+    rightColumnY += lineHeight * 2;
+
     doc.setFontSize(12);
     skillsInfo.forEach(skill => {
       doc.setFont(undefined, 'bold');
-      doc.text(skill.title, leftMargin, yPos);
+      doc.text(skill.title, middlePoint, rightColumnY);
       doc.setFont(undefined, 'normal');
-      yPos += lineHeight;
-      const skills = doc.splitTextToSize(skill.info, 170);
-      doc.text(skills, leftMargin, yPos);
-      yPos += lineHeight * skills.length + 5;
+      rightColumnY += lineHeight;
+      const skills = doc.splitTextToSize(skill.info, 60);
+      doc.text(skills, middlePoint, rightColumnY);
+      rightColumnY += lineHeight * skills.length + 5;
     });
 
     // Certifications Section
     doc.setFontSize(16);
-    doc.text("Certifications", leftMargin, yPos);
-    yPos += lineHeight;
+    doc.setFillColor(80, 80, 88, 0.26);
+    doc.rect(middlePoint - 5, rightColumnY - 5, 60, 10, 'F');
+    doc.text("Certifications", middlePoint, rightColumnY);
+    rightColumnY += lineHeight * 2;
+
     doc.setFontSize(12);
     certInfo.forEach(cert => {
       doc.setFont(undefined, 'bold');
-      doc.text(cert.certName, leftMargin, yPos);
+      doc.text(cert.certName, middlePoint, rightColumnY);
       doc.setFont(undefined, 'normal');
-      yPos += lineHeight;
-      doc.text(cert.certInfo, leftMargin, yPos);
-      yPos += lineHeight + 5;
+      rightColumnY += lineHeight;
+      const certInfo = doc.splitTextToSize(cert.certInfo, 60);
+      doc.text(certInfo, middlePoint, rightColumnY);
+      rightColumnY += lineHeight * certInfo.length + 5;
     });
 
     doc.save('resume.pdf');
