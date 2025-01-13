@@ -35,10 +35,10 @@ function Education({ data, setData }) {
     setEditing(null);
   };
 
-  const handleEdit = (index) => {
-    setShowPopup(false);
+  const handleEdit = (index) => {    
     setCurrentEdu(education[index]);
     setEditing(index);
+    setShowPopup(true);
   };
 
   const handleDelete = (index) => {
@@ -91,21 +91,14 @@ function Education({ data, setData }) {
             />
           </label>
           <label>
-            <span>From:</span>
+            <span>Finished:</span>
             <input
-              type="text"
+              type="date"
               value={currentEdu.dateFrom}
               onChange={(e) => setCurrentEdu({...currentEdu, dateFrom: e.target.value})}
             />
           </label>
-          <label>
-            <span>Until:</span>
-            <input
-              type="text"
-              value={currentEdu.dateUntil}
-              onChange={(e) => setCurrentEdu({...currentEdu, dateUntil: e.target.value})}
-            />
-          </label>
+          
         </PopupForm>
     </div>
   );
