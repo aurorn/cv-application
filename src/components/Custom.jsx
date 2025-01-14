@@ -65,7 +65,12 @@ function Custom({ data, setData }) {
         ))}
       </div>
     
-      <button onClick={() => setShowPopup(true)}>Add Section</button>
+      {customs.length < 1 && (
+        <button onClick={() => setShowPopup(true)}>Add Section</button>
+      )}
+      {customs.length >= 1 && (
+        <p className="section-limit-message">Maximum 1 section allowed</p>
+      )}
       
       <PopupForm 
         show={showPopup}

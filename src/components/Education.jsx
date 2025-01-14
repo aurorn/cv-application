@@ -65,8 +65,12 @@ function Education({ data, setData }) {
         ))}
       </div>
 
-
+      {education.length < 2 && (
         <button onClick={() => setShowPopup(true)}>Add Education</button>
+      )}
+      {education.length >= 2 && (
+        <p className="section-limit-message">Maximum 2 education entries allowed</p>
+      )}
 
         <PopupForm 
         show={showPopup}

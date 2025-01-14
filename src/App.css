@@ -10,9 +10,23 @@ body {
   overflow-x: hidden;
 }
 
-.app-container {
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  padding: 10px 20px;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.app-container {
+  margin-top: 60px; /* Add space for fixed header */
+  display: flex;
+  gap: 20px;
   padding: 20px;
   font-family: sans-serif;
 }
@@ -83,16 +97,15 @@ p {
 }
 
 .download-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
+  padding: 8px 16px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .download-btn:hover {
@@ -104,3 +117,11 @@ p {
   align-items: center;
 }
 
+.section-limit-message {
+  color: #666;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}

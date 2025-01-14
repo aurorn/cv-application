@@ -57,7 +57,12 @@ function Certifications({ data, setData }) {
         ))}
       </div>
 
-      <button onClick={() => setShowPopup(true)}>Add Certification</button>
+      {certifications.length < 5 && (
+        <button onClick={() => setShowPopup(true)}>Add Certification</button>
+      )}
+      {certifications.length >= 5 && (
+        <p className="section-limit-message">Maximum 5 certifications allowed</p>
+      )}
 
       <PopupForm 
         show={showPopup}

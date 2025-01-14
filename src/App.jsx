@@ -58,28 +58,40 @@ function App() {
   }]);
 
   return (
-    <div className="app-container">
-      <div className="input-sections">
-        <div className="form-section">
-          <GeneralInfo data={generalInfo} setData={setGeneralInfo} />
+    <>
+      <div className="header-bar">
+        <Download 
+          generalInfo={generalInfo}
+          educationInfo={educationInfo}
+          practicalInfo={practicalInfo}
+          customInfo={customInfo}
+          skillsInfo={skillsInfo}
+          certInfo={certInfo}
+        />
+      </div>
+      <div className="app-container">
+        <div className="input-sections">
+          <div className="form-section">
+            <GeneralInfo data={generalInfo} setData={setGeneralInfo} />
+          </div>
+          <div className="form-section">
+            <Education data={educationInfo} setData={setEducationInfo} />
+          </div>
+          <div className="form-section">
+            <PracExp data={practicalInfo} setData={setPracticalInfo} />
+          </div>
+          <div className="form-section">
+            <Custom data={customInfo} setData={setCustomInfo} />
+          </div>
+          <div className="form-section">
+            <Skills data={skillsInfo} setData={setSkillsInfo} />
+          </div>
+          <div className="form-section">
+            <Certification data={certInfo} setData={setCertInfo} />
+          </div>
         </div>
-        <div className="form-section">
-          <Education data={educationInfo} setData={setEducationInfo} />
-        </div>
-        <div className="form-section">
-          <PracExp data={practicalInfo} setData={setPracticalInfo} />
-        </div>
-        <div className="form-section">
-          <Custom data={customInfo} setData={setCustomInfo} />
-        </div>
-        <div className="form-section">
-          <Skills data={skillsInfo} setData={setSkillsInfo} />
-        </div>
-        <div className="form-section">
-          <Certification data={certInfo} setData={setCertInfo} />
-        </div>
-        <div className="form-section">
-          <Download 
+        <div className="display-section">
+          <ResumeDisplay
             generalInfo={generalInfo}
             educationInfo={educationInfo}
             practicalInfo={practicalInfo}
@@ -89,17 +101,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="display-section">
-        <ResumeDisplay
-          generalInfo={generalInfo}
-          educationInfo={educationInfo}
-          practicalInfo={practicalInfo}
-          customInfo={customInfo}
-          skillsInfo={skillsInfo}
-          certInfo={certInfo}
-        />
-      </div>
-    </div>
+    </>
   );
 }
 

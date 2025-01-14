@@ -73,7 +73,12 @@ function PracExp({ data, setData }) {
         ))}
       </div>
 
-      <button onClick={() => setShowPopup(true)}>Add Experience</button>
+      {experiences.length < 3 && (
+        <button onClick={() => setShowPopup(true)}>Add Experience</button>
+      )}
+      {experiences.length >= 3 && (
+        <p className="section-limit-message">Maximum 3 work experiences allowed</p>
+      )}
 
       {showPopup && (
         <PopupForm

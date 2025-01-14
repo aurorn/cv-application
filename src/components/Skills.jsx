@@ -61,9 +61,12 @@ function Skills({ data, setData }) {
         ))}
       </div>
 
-      
-      <button onClick={() => setShowPopup(true)}>Add Skill</button>
-      
+      {skills.length < 3 && (
+        <button onClick={() => setShowPopup(true)}>Add Skill</button>
+      )}
+      {skills.length >= 3 && (
+        <p className="section-limit-message">Maximum 3 skill sections allowed</p>
+      )}
 
       <PopupForm 
         show={showPopup}
